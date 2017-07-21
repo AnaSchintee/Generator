@@ -1,0 +1,15 @@
+{
+  "name": "ana-schintee/generator",
+  "description": "Json generator based on rule schema",
+  "minimum-stability": "dev",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Ana Schintee",
+      "email": "ana.schintee@emag.ro"
+    }
+  ],
+  "require-dev": {
+    "phpunit/phpunit": "^6.2"
+  }
+}
