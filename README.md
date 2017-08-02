@@ -1,0 +1,51 @@
+
+The Generator is used to generate a new json data based on a predefined format and rules described below. The data is generated with the 
+help of the Symfony framework and the Faker library (https://github.com/fzaninotto/Faker).
+
+Example input:
+{
+  "id": "{{ integer(1, 10) }}",
+  "string": " {{ string(<length>1)}} ",
+  "float": "{{ float(1.0, 10.0)}}",
+  "name": " {{ firstname() }} {{ firstname() }} ",
+  "firstname": " {{ firstname() }} ",
+  "lastname": " {{ lastname() }} ",
+  "username": " {{ username() }} ",
+  "email": " {{ email() }} ",
+  "boolean": " {{ boolean() }} "
+}
+
+Example output:
+ {
+   "id":6,
+   "string":" vel ",
+   "float":7.4480886599999998,
+   "name":" Stella Buster Gerlach ",
+   "firstname":" Clay ",
+   "lastname":" Rath ",
+   "username":" mueller.brandi ",
+   "email":"keeley26@gmail.com",
+   "boolean":true
+}
+
+Format and rules:
+The following predefined functions need to be used, for different data types generation:
+
+- integer: {{ integer(1, 10) }}
+- float: {{ float(1.0, 10.0)}}
+- string: {{ string(<length>1)}}
+- boolean: {{ boolean() }}
+- name (combination of first name and last name) : {{ firstname() }} {{ firstname() }} 
+- first name: {{ firstname() }}
+- last name: {{ lastname() }}
+- username: {{ username() }}
+- email: {{ email() }}
+
+Installation
+
+In order for this project to work properly a PHP IDE and Composer(https://getcomposer.org/download/) need to be installed.
+
+Testing
+
+Some unit tests are provided, mainly for the data generating methods. Information about how this can be runned can be found here: https://phpunit.de/manual/current/en/textui.html
+Some others tests are there to be added as changes are made. 
