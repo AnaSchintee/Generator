@@ -1,6 +1,6 @@
 
 The Generator is used to generate a new json data based on a predefined format and rules described below. The data is generated with the 
-help of the Symfony framework and the Faker library (https://github.com/fzaninotto/Faker).
+help of the Faker library (https://github.com/fzaninotto/Faker).
 
 Example input:
 {
@@ -40,12 +40,4 @@ The following predefined functions need to be used, for different data types gen
 - last name: {{ lastname() }}
 - username: {{ username() }}
 - email: {{ email() }}
-
-Installation
-
-In order for this project to work properly a PHP IDE and Composer(https://getcomposer.org/download/) need to be installed.
-
-Testing
-
-Some unit tests are provided, mainly for the data generating methods. Information about how this can be runned can be found here: https://phpunit.de/manual/current/en/textui.html
-Some others tests are there to be added as changes are made. 
+ 
