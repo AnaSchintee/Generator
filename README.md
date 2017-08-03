@@ -3,29 +3,29 @@ The Generator is used to generate a new json data based on a predefined format a
 help of the Faker library (https://github.com/fzaninotto/Faker).
 
 Example input:
-{
+{<br />
   "id": "{{ integer(1, 10) }}", <br />
   "string": " {{ string(<length>1)}} ", <br />
-  "float": "{{ float(1.0, 10.0)}}",
-  "name": " {{ firstname() }} {{ firstname() }} ",
-  "firstname": " {{ firstname() }} ",
-  "lastname": " {{ lastname() }} ",
-  "username": " {{ username() }} ",
-  "email": " {{ email() }} ",
-  "boolean": " {{ boolean() }} "
+  "float": "{{ float(1.0, 10.0)}}",<br />
+  "name": " {{ firstname() }} {{ firstname() }} ",<br />
+  "firstname": " {{ firstname() }} ",<br />
+  "lastname": " {{ lastname() }} ",<br />
+  "username": " {{ username() }} ",<br />
+  "email": " {{ email() }} ",<br />
+  "boolean": " {{ boolean() }} "<br />
 }
 
 Example output:
- {
-   "id":6,
-   "string":" vel ",
-   "float":7.4480886599999998,
-   "name":" Stella Buster Gerlach ",
-   "firstname":" Clay ",
-   "lastname":" Rath ",
-   "username":" mueller.brandi ",
-   "email":"keeley26@gmail.com",
-   "boolean":true
+ {<br />
+   "id":6,<br />
+   "string":" vel ",<br />
+   "float":7.4480886599999998,<br />
+   "name":" Stella Buster Gerlach ",<br />
+   "firstname":" Clay ",<br />
+   "lastname":" Rath ",<br />
+   "username":" mueller.brandi ",<br />
+   "email":"keeley26@gmail.com",<br />
+   "boolean":true<br />
 }
 
 Format and rules:
