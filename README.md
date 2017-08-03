@@ -4,7 +4,7 @@ help of the Faker library (https://github.com/fzaninotto/Faker).
 
 Example input:
 {
-  "id": "{{ integer(1, 10) }}",\n
+ > "id": "{{ integer(1, 10) }}",
   "string": " {{ string(<length>1)}} ",
   "float": "{{ float(1.0, 10.0)}}",
   "name": " {{ firstname() }} {{ firstname() }} ",
