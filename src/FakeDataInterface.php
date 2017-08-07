@@ -8,18 +8,15 @@
 
 namespace Ana\Generator;
 
-
-use phpDocumentor\Reflection\Types\Null_;
-
 interface FakeDataInterface
 {
     public function generateInteger($min = 0, $max = Null);
-    public function generateString();
+    public function generateString($indicator,$value);
     public function generateFloat($min = 0, $max = Null);
     public function generateFirstName();
     public function generateLastName();
     public function generateUserName();
     public function generateEmail();
     public function generateBoolean();
-    public function generateAdress();
+    public function generateAddress();
 }

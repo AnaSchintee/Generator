@@ -6,11 +6,10 @@
  * Time: 5:57 PM
  */
 
-namespace Ana\Generator\Generators;
+namespace Ana\Generator;
 
-use Ana\Generator\FakeDataInterface;
 
-class Generator implements FakeDataInterface
+class FakerDataGenerator implements FakeDataInterface
 {
     /** @var  \Faker\Generator */
     protected $faker;
@@ -30,9 +29,16 @@ class Generator implements FakeDataInterface
         return $this->getFaker()->numberBetween($min, $max);
     }
 
-    public function generateString()
+    public function generateString($indicator,$value)
     {
-        return $this->getFaker()->word;
+
+        if ($indicator === "length" ) {
+            $word = ' ';
+            while (strlen($word) < intval($value + 1)) {
+                $word = $this->getFaker()->word;
+            }
+        }
+        return $word;
     }
 
     public function generateFloat( $min = 0, $max = NULL)
@@ -65,7 +71,7 @@ class Generator implements FakeDataInterface
         return $this->getFaker()->boolean($chanceOfGettingTrue = 50);
     }
 
-    public function generateAdress()
+    public function generateAddress()
     {
         return $this->getFaker()->streetAddress;
     }

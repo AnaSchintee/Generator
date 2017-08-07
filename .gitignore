@@ -1,4 +1,5 @@
 .idea/
 vendor/*
 input/
-index.php
+out/*
+phpunit.xml

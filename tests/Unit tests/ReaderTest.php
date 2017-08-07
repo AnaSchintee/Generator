@@ -8,9 +8,8 @@
  */
 namespace tests;
 
-use Ana\Generator\Generators\Generator;
+use Ana\Generator\FakerDataGenerator;
 use Ana\Generator\Reader;
-use Faker\Factory;
 use PHPUnit\Framework\TestCase;
 
 class ReaderTest extends TestCase
@@ -21,14 +20,16 @@ class ReaderTest extends TestCase
     /** @var  Reader */
     private $reader;
 
+
     public function setUp()
     {
-        $this->fakerMock = $this->createMock(Generator::class);
+        $this->fakerMock = $this->createMock(FakerDataGenerator::class);
 
         $this->reader = new Reader(
             $this->fakerMock,
             json_decode(file_get_contents("D:\work\Generator\input\Initial.json"), true)
         );
+
     }
 
     public function testGenerateValueForInteger()
@@ -67,7 +68,7 @@ class ReaderTest extends TestCase
         $this->assertEquals("+-1 Ana 1245", $this->reader->generateValue('+-1 {{firstname()}} 1245'));
     }
 
-    public function testGenerateValueForLastName()
+ function testGenerateValueForLastName()
     {
         $this->fakerMock->method('generateLastName')
             ->willReturn("Banana");
@@ -111,4 +112,14 @@ class ReaderTest extends TestCase
         $this->assertEquals("Disneyland", $this->reader->generateValue('{{adress()}}'));
         $this->assertEquals("+-1 Disneyland 1245", $this->reader->generateValue('+-1 {{adress()}} 1245'));
     }
+
+    public function testGenerateValueForError()
+    {
+        $this->fakerMock->method('generateInteger')
+            ->willReturn("Error");
+
+        $this->assertEquals("Error", $this->reader->generateValue('{{integer24()}}'));
+        $this->assertEquals("+-1 Error 1245", $this->reader->generateValue('+-1 {{integer24()}} 1245'));
+    }
+
 }
