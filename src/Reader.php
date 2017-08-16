@@ -16,15 +16,18 @@ class Reader
 
     public function __construct($file) {
         $this->file = $file;
+        $this->validateFile();
+        $this->populateFileContent();
+    }
+
+    public function validateFile() {
         if($this->file == null){
             throw new InvalidParamException('No parameter introduced');
         }
 
-        if(!file_exists($this->file) and !filter_var($this->file, FILTER_VALIDATE_URL)) {
+        if(!file_exists($this->file) && !filter_var($this->file, FILTER_VALIDATE_URL)) {
             throw new FileNotExistsException('The file could not be found');
         }
-
-        $this->populateFileContent();
     }
 
     public function getFile() {
@@ -36,7 +39,6 @@ class Reader
         return  $this->fileContent;
     }
 
-
     public function decodeFile() {
         $data = json_decode($this->getContent());
        if($data == null) {
@@ -45,8 +47,7 @@ class Reader
        return  json_decode($this->getContent(), true);
     }
 
-    private function populateFileContent(): void
-    {
+    private function populateFileContent(): void {
         if ($this->fileContent == null) {
             $this->fileContent = file_get_contents($this->getFile());
         }
