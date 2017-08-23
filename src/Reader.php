@@ -9,6 +9,8 @@
 
 namespace Ana\Generator;
 
+use Ana\Generator\Exception;
+
 class Reader
 {
     public $file;

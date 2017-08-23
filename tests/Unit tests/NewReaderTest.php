@@ -3,7 +3,6 @@
 namespace tests;
 
 use Ana\Generator\Reader;
-use PHPUnit\Exception;
 use PHPUnit\Framework\TestCase;
 
 class NewReaderTest extends TestCase

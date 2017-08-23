@@ -8,17 +8,17 @@
 
 namespace Ana\Generator;
 
+use Ana\Generator\Exception;
 
 class DataGenerator
 {
 
-    /** @var  FakeDataInterface */
-    private $faker;
+    /** @var  \Faker\Generator */
+    protected $faker;
 
-    public function __construct($faker)
+    public function __construct($fakerGenerator)
     {
-        $this->faker = $faker;
-
+        $this->faker = $fakerGenerator;
     }
 
     public function getFunction($value) {
@@ -28,68 +28,29 @@ class DataGenerator
         return $matches[1];
     }
 
-    public function getFunctionName($value): array {
+    public function getTemplate($value)
+    {
         $matches = [];
         preg_match_all("/\d+\.\d+|\w+/", $value, $matches);
 
-        return $matches;
-
+        return new TemplateMethod($matches[0]);
     }
+
 
     public function generateValue($pattern)
     {
         $functions = $this->getFunction($pattern);
 
         if(is_array($functions) and !$functions == null) {
-
             foreach ($functions as $function) {
-                $functionValues = $this->getFunctionName($function);
+                $template = $this->getTemplate($function);
+                $strategy = $this->getStrategy($template->getMethod());
+                $result = $strategy->getResult($template->getParams());
 
-                switch ($functionValues[0][0]) {
-
-                    case "integer":
-                        $result = $this->faker->generateInteger($functionValues[0][1],$functionValues[0][2]);
-                        break;
-
-                    case "string":
-                        $result = $this->faker->generateString($functionValues[0][1],$functionValues[0][2]);
-                        break;
-
-                    case "float":
-                        $result = $this->faker->generateFloat($functionValues[0][1],$functionValues[0][2]);
-                        break;
-
-                    case "firstname":
-                        $result = $this->faker->generateFirstName();
-                        break;
-
-                    case "lastname":
-                        $result = $this->faker->generateLastName();
-                        break;
-
-                    case "boolean":
-                        $result = $this->faker->generateBoolean();
-                        break;
-
-                    case "username":
-                        $result = $this->faker->generateUserName();
-                        break;
-
-                    case "email":
-                        $result = $this->faker->generateEmail();
-                        break;
-
-                    case "address":
-                        $result = $this->faker->generateAddress();
-                        break;
-
-                    default:
-                        $result = "Error";
-                }
-
-                $pattern = preg_replace("/\{\{\s*(.*?)\s*\}\}/", $result, $pattern, count($functionValues[0][0]));
+                $pattern = preg_replace("/\{\{\s*(.*?)\s*\}\}/", $result, $pattern, count($strategy));
             }
         }
+
         if($pattern != strval($result))
         {
             return $pattern;
@@ -98,4 +59,16 @@ class DataGenerator
             return $result;
         }
     }
+
+    private function getStrategy($method)
+    {
+        $className = 'Ana\\Generator\\Strategy\\'.ucfirst($method).'Strategy';
+
+        if(!class_exists($className)) {
+            throw new StrategyNotExistsException("The strategy doesn't exist!");
+        }
+
+        return new $className($this->faker);
+    }
+
 }

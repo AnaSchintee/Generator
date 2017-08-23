@@ -10,8 +10,6 @@ namespace tests;
 
 use Ana\Generator\DataGenerator;
 use Ana\Generator\FakerDataGenerator;
-use Ana\Generator\Parser;
-use Ana\Generator\Reader;
 use PHPUnit\Framework\TestCase;
 
 class ParserTest extends TestCase

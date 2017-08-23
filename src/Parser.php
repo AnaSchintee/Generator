@@ -8,7 +8,6 @@
 
 namespace Ana\Generator;
 
-
 class Parser
 {
     /** @var  DataGenerator */
