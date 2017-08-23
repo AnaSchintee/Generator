@@ -8,8 +8,7 @@
 
 namespace Ana\Generator;
 
-use Ana\Generator\Exception;
-
+use Ana\Generator\Exception\StrategyNotExistsException;
 class DataGenerator
 {
 
@@ -23,6 +22,7 @@ class DataGenerator
 
     public function getFunction($value) {
         $matches = [];
+
         preg_match_all("/\{\{\s*(.*?)\s*\}\}/", $value, $matches);
 
         return $matches[1];
@@ -31,7 +31,7 @@ class DataGenerator
     public function getTemplate($value)
     {
         $matches = [];
-        preg_match_all("/\d+\.\d+|\w+/", $value, $matches);
+            preg_match_all("/\d+\.\d+|\w+/", $value, $matches);
 
         return new TemplateMethod($matches[0]);
     }

@@ -9,7 +9,9 @@
 
 namespace Ana\Generator;
 
-use Ana\Generator\Exception;
+use Ana\Generator\Exception\InvalidParamException;
+use Ana\Generator\Exception\InvalidJsonException;
+use Ana\Generator\Exception\FileNotExistsException;
 
 class Reader
 {

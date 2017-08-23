@@ -8,6 +8,8 @@
 
 namespace Ana\Generator;
 
+
+
 class Parser
 {
     /** @var  DataGenerator */
@@ -27,14 +29,29 @@ class Parser
     {
         $arr = [];
         foreach ($this->reader->decodeFile() as $key => $value) {
-            $arr[$key] = $this->generator->generateValue($value);
+            if (is_string($value)) {
+                $arr[$key] = $this->generator->generateValue($value);
+            } else {
+                $arr[$key] =  $this->iterateJson($value);
+                }
         }
-
         return $arr;
     }
 
-    public function generateJSON($array) {
-        echo json_encode($array);
+
+    public function iterateJson($value)
+    {
+        $newArr = [];
+        foreach ($value as $newKey => $newValue) {
+            if (is_string($newValue)) {
+                $newArr[$newKey] = $this->generator->generateValue($newValue);
+            } else
+                $newArr[$newKey] = $this->iterateJson($newValue);
+        }
+        return $newArr;
     }
 
+    public function generateJSON($array) {
+        return $array;
+    }
 }

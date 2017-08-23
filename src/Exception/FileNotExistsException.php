@@ -6,7 +6,7 @@
  * Time: 3:10 PM
  */
 
-namespace Ana\Generator;
+namespace Ana\Generator\Exception;
 
 use Throwable;
 

@@ -6,9 +6,10 @@
  * Time: 3:11 PM
  */
 
-namespace Ana\Generator;
+namespace Ana\Generator\Exception;
 
 use Throwable;
+
 class InvalidJsonException extends \Exception
 {
     public function __construct($message = "", $code = 0, Throwable $previous = null)

@@ -6,7 +6,7 @@
  * Time: 2:57 PM
  */
 
-namespace Ana\Generator {
+namespace Ana\Generator\Exception;
 
 use Throwable;
 
@@ -17,5 +17,4 @@ use Throwable;
             parent::__construct($message, $code, $previous);
         }
 
-    }
 }
